@@ -115,6 +115,7 @@ TOKEN :
 	    |  < GRAB > "(" x=num() ")" {world.grabBalloons(x); salida = "Comando:  Grab";}
 	    |  < GET > "(" x=num() ")" {world.getChips(x); salida = "Comando:  Get";}
 	    |  < FREE > "(" x=num() ")" {world.freeBalloons(x); salida = "Comando:  Free";}
+	    |  < VEER > "(" x=num() ")" {veer( x ); salida = "Comando:  Veer";}
 	      
 	       
 		) ";" 
