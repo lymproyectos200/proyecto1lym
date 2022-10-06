@@ -108,14 +108,14 @@ TOKEN :
 		|  < JUMP >  "(" x=num() ")" {world.moveForward(x,true);salida = "Command:Jumpforward ";}
 		|  < JUMPTO >  "(" x=num() "," y=num()")" {world.setPostion(x,y);salida = "Command:JumpTo ";}
 		|  < VEER > "(" x= String() ")" {veer( x ); salida = "Comando:  Veer";}
-	    |  < LOOK > "(" x= String() ")" {look(x); salida = "Comando:  Look";}    
-	    |  < DROP > "(" x=num() ")" {world.dropChips(x); salida = "Comando:  Drop";}
-	    |  < GRAB > "(" x=num() ")" {world.grabBalloons(x); salida = "Comando:  Grab";}
-	    |  < GET > "(" x=num() ")" {world.getChips(x); salida = "Comando:  Get";}
-	    |  < FREE > "(" x=num() ")" {world.freeBalloons(x); salida = "Comando:  Free";}
-	    |  < POP > "(" x=num() ")" {world.popBalloons(x); salida = "Comando:  Pop";}
-	    |  < DMOVE > "(" x=num()"," y=String() ")" {Dmove(x,y); salida = "Comando:  Dmove";}
-	    |  < OMOVE > "(" x=num()"," y=String() ")" {Omove(x,y); salida = "Comando:  Omove";}
+	    |  < LOOK > "(" x= String() ")" {look(x); salida = "Comando:  Look";}    #------------------
+	    |  < DROP > "(" x=num() ")" {world.putChips(x); salida = "Comando:  Drop";}
+	    |  < GRAB > "(" x=num() ")" {world.pickupBalloon(x); salida = "Comando:  Grab";}
+	    |  < GET > "(" x=num() ")" {world.pickupChip(x); salida = "Comando:  Get";}
+	    |  < FREE > "(" x=num() ")" {world.putBalloon(x); salida = "Comando:  Free";}
+	    |  < POP > "(" x=num() ")" {world.popBalloon(x); salida = "Comando:  Pop";}
+	    |  < DMOVE > "(" x=num()"," y=String() ")" {Dmove(x,y); salida = "Comando:  Dmove";}#--------
+	    |  < OMOVE > "(" x=num()"," y=String() ")" {Omove(x,y); salida = "Comando:  Omove";}#---------
 	    
 	    
 	       
@@ -186,6 +186,106 @@ TOKEN :
 			}
 	}
 
+void look(boolean direc): { int x= 0;}
+	{
+		<d>
+		{
+		  String a = token.image;
+		  comand.add(a);
+		  f = world.getFacing()
+		  if (direc)
+			{
+				if (a.equals("south"))
+					{
+						if (f.equals("NORTH")
+						{
+							world.turnRight();
+							world.turnRight();
+						})
+						else if (f.equals("WEST")
+						{
+							world.turnRight();
+							world.turnRight();
+							world.turnRight();
+						})
+						else if (f.equals("EAST")
+						{
+							world.turnRight();
+						})
+					}
+				if (a.equals("west"))
+					{
+						if (f.equals("NORTH")
+						{
+							world.turnRight();
+							world.turnRight();
+							world.turnRight();
+						})
+						else if (f.equals("SOUTH")
+						{
+							world.turnRight();
+						})
+						else if (f.equals("EAST")
+						{
+							world.turnRight();
+							world.turnRight();
+						})
+					}
+				if (a.equals("east"))
+					{
+						if (f.equals("NORTH")
+						{
+							world.turnRight();
+						})
+						else if (f.equals("SOUTH")
+						{
+							world.turnRight();
+							world.turnRight();
+							world.turnRight();
+						})
+						else if (f.equals("WEST")
+						{
+							world.turnRight();
+							world.turnRight();
+						})
+					}
+				if (a.equals("north"))
+		    	{
+					if (f.equals("EAST")
+					{
+						world.turnRight();
+						world.turnRight();
+						world.turnRight();
+					})
+					else if (f.equals("SOUTH")
+					{
+						world.turnRight();
+						world.turnRight();
+					})
+					else if (f.equals("WEST")
+					{
+						world.turnRight();
+					})
+				}
+			}
+			
+		}
+	 }
+	void turnDirection(boolean direc): { int x= 0;}
+	{
+		<d>
+		{
+		  String a = token.image;
+		  comand.add(a);
+		  f = world.getFacing()
+		  if (direc)
+		  {
+			if (f.equals("SOUTH"))
+				{
+
+				}
+		  }
+	}
 	
 	
 
