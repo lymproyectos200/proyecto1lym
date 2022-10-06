@@ -104,19 +104,20 @@ TOKEN :
 	{
 		(
 		  (
-		   < RIGHT > "(" ")" {world.turnRight();salida = "Command: Turnright";}
-		|  < STEP >  "(" x=num() ")" {world.moveForward(x,false);salida = "Command: Moveforward ";}  
+		   < STEP >  "(" x=num() ")" {world.moveForward(x,false);salida = "Command: Moveforward ";}  
 		|  < JUMP >  "(" x=num() ")" {world.moveForward(x,true);salida = "Command:Jumpforward ";}
-		|  < GO >  "(" x=num() "," y=num()")" {world.setPostion(x,y);salida = "Command:Jumpto ";}  
-		|  < PUT > "("  put() ")"					  			
-		|  < PICK > "(" get()  ")"	
-	    |  < POP > "(" x=num() ")" {world.popBalloons(x); salida = "Comando:  Pop";}
+		|  < JUMPTO >  "(" x=num() "," y=num()")" {world.setPostion(x,y);salida = "Command:JumpTo ";}
+		|  < VEER > "(" x= String() ")" {veer( x ); salida = "Comando:  Veer";}
+	    |  < LOOK > "(" x= String() ")" {look(x); salida = "Comando:  Look";}    
 	    |  < DROP > "(" x=num() ")" {world.dropChips(x); salida = "Comando:  Drop";}
 	    |  < GRAB > "(" x=num() ")" {world.grabBalloons(x); salida = "Comando:  Grab";}
 	    |  < GET > "(" x=num() ")" {world.getChips(x); salida = "Comando:  Get";}
 	    |  < FREE > "(" x=num() ")" {world.freeBalloons(x); salida = "Comando:  Free";}
-	    |  < VEER > "(" x=num() ")" {veer( x ); salida = "Comando:  Veer";}
-	      
+	    |  < POP > "(" x=num() ")" {world.popBalloons(x); salida = "Comando:  Pop";}
+	    |  < DMOVE > "(" x=num()"," y=String() ")" {Dmove(x,y); salida = "Comando:  Dmove";}
+	    |  < OMOVE > "(" x=num()"," y=String() ")" {Omove(x,y); salida = "Comando:  Omove";}
+	    
+	    
 	       
 		) ";" 
 
