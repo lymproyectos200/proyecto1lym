@@ -271,21 +271,7 @@ void look(boolean direc): { int x= 0;}
 			
 		}
 	 }
-	void turnDirection(boolean direc): { int x= 0;}
-	{
-		<d>
-		{
-		  String a = token.image;
-		  comand.add(a);
-		  f = world.getFacing()
-		  if (direc)
-		  {
-			if (f.equals("SOUTH"))
-				{
-
-				}
-		  }
-	}
+	
 	
 	
 
