@@ -63,8 +63,8 @@ TOKEN: /* Nombres de Comandos */
 		| 	<RIGHT: "RIGHT">
 		| 	<PUT: "Put">
 		| 	<PICK: "Pick">
-		|  < POP: "Pop" >
-		|  <JUMPTO: "JumpTo" >
+		|   < POP: "Pop" >
+		|   <JUMPTO: "JumpTo" >
         |   < DROP: "Drop" >
         |   < GRAB: "Grab" >
         |   < GET: "Get" >
@@ -102,18 +102,19 @@ TOKEN :
 
 	
 	{
-		(		  (
-		   <RIGHT> "(" ")" {world.turnRight();salida = "Command: Turnright";}
-		| 	<STEP>  "(" x=num() ")" {world.moveForward(x,false);salida = "Command: Moveforward ";}  
-		| 	<JUMP>  "(" x=num() ")" {world.moveForward(x,true);salida = "Command:Jumpforward ";}
-		| 	<>  "(" x=num() "," y=num()")" {world.setPostion(x,y);salida = "Command:Jumpto ";}  
-		|  <PUT> "("  put() ")"					  			
-		|  <PICK> "(" get()  ")"	
+		(
+		  (
+		   < RIGHT > "(" ")" {world.turnRight();salida = "Command: Turnright";}
+		|  < STEP >  "(" x=num() ")" {world.moveForward(x,false);salida = "Command: Moveforward ";}  
+		|  < JUMP >  "(" x=num() ")" {world.moveForward(x,true);salida = "Command:Jumpforward ";}
+		|  < GO >  "(" x=num() "," y=num()")" {world.setPostion(x,y);salida = "Command:Jumpto ";}  
+		|  < PUT > "("  put() ")"					  			
+		|  < PICK > "(" get()  ")"	
 	    |  < POP > "(" x=num() ")" {world.popBalloons(x); salida = "Comando:  Pop";}
-	       < DROP > "(" x=num() ")" {world.dropChips(x); salida = "Comando:  Drop";}
-	       < GRAB > "(" x=num() ")" {world.grabBalloons(x); salida = "Comando:  Grab";}
-	       < GET > "(" x=num() ")" {world.getChips(x); salida = "Comando:  Get";}
-	       < FREE > "(" x=num() ")" {world.freeBalloons(x); salida = "Comando:  Free";}
+	    |  < DROP > "(" x=num() ")" {world.dropChips(x); salida = "Comando:  Drop";}
+	    |  < GRAB > "(" x=num() ")" {world.grabBalloons(x); salida = "Comando:  Grab";}
+	    |  < GET > "(" x=num() ")" {world.getChips(x); salida = "Comando:  Get";}
+	    |  < FREE > "(" x=num() ")" {world.freeBalloons(x); salida = "Comando:  Free";}
 	      
 	       
 		) ";" 
@@ -150,6 +151,37 @@ TOKEN :
 		( <CHIPS>   "," f=num() {world.pickChips(f);salida = "Command:  Pick chips";})
 		|  	  ( <BALLOONS>   "," f=num() {world.grabBalloons(f);salida="Command:  Pick balloons";})	 
 
+	}
+	void veer(boolean direc): { int x= 0;}
+	{
+		<d>
+		{
+		  String a = token.image;
+		  comand.add(a);
+		  if (direc)
+		  {
+		    if (a.equals("right-"))
+		    	world.turnRight();
+		    	
+		    else if (a.equals("left-"))
+		    { 
+		    	world.turnRight();
+		    	world.turnRight();
+		    	world.turnRight();
+		    }
+		    	
+		    else if (a.equals("around-"))
+			{
+				world.turnRight();
+				world.turnRight();
+			}
+			else
+			{
+			  world.turnRight();
+			  world.turnRight();
+			  world.turnRight();
+			  world.turnRight();
+			}
 	}
 
 	
