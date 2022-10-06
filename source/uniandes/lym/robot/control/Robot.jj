@@ -108,7 +108,7 @@ TOKEN :
 		|  < JUMP >  "(" x=num() ")" {world.moveForward(x,true);salida = "Command:Jumpforward ";}
 		|  < JUMPTO >  "(" x=num() "," y=num()")" {world.setPostion(x,y);salida = "Command:JumpTo ";}
 		|  < VEER > "(" x= String() ")" {veer( x ); salida = "Comando:  Veer";}
-	    |  < LOOK > "(" x= String() ")" {look(x); salida = "Comando:  Look";}    #------------------
+	    |  < LOOK > "(" x= String() ")" {look(x); salida = "Comando:  Look";}  
 	    |  < DROP > "(" x=num() ")" {world.putChips(x); salida = "Comando:  Drop";}
 	    |  < GRAB > "(" x=num() ")" {world.pickupBalloon(x); salida = "Comando:  Grab";}
 	    |  < GET > "(" x=num() ")" {world.pickupChip(x); salida = "Comando:  Get";}
