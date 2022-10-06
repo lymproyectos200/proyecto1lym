@@ -158,32 +158,34 @@ TOKEN :
 	{
 		<d>
 		{
-		  String a = token.image;
-		  comand.add(a);
-		  if (direc)
-		  {
-		    if (a.equals("right-"))
-		    	world.turnRight();
-		    	
-		    else if (a.equals("left-"))
-		    { 
-		    	world.turnRight();
-		    	world.turnRight();
-		    	world.turnRight();
-		    }
-		    	
-		    else if (a.equals("around-"))
+			String a = token.image;
+			comand.add(a);
+			if (direc)
 			{
-				world.turnRight();
-				world.turnRight();
+				if (a.equals("right-"))
+				{
+					world.turnRight();
+				}
+				else if (a.equals("left-"))
+				{ 
+					world.turnRight();
+					world.turnRight();
+					world.turnRight();
+				}
+				else if (a.equals("around-"))
+				{
+					world.turnRight();
+					world.turnRight();
+				}
+				else
+				{
+					world.turnRight();
+					world.turnRight();
+					world.turnRight();
+					world.turnRight();
+				}
 			}
-			else
-			{
-			  world.turnRight();
-			  world.turnRight();
-			  world.turnRight();
-			  world.turnRight();
-			}
+		}
 	}
 
 	void look(boolean direc): { int x= 0;}
@@ -202,17 +204,17 @@ TOKEN :
 						world.turnRight();
 						world.turnRight();
 					})
+					else if (f.equals("WEST")
+					{
+						world.turnRight();
+						world.turnRight();
+						world.turnRight();
+					})
+					else if (f.equals("EAST")
+					{
+						world.turnRight();
+					})
 				}
-				else if (f.equals("WEST")
-				{
-					world.turnRight();
-					world.turnRight();
-					world.turnRight();
-				})
-				else if (f.equals("EAST")
-				{
-					world.turnRight();
-				})
 			}
 			if (a.equals("west"))
 			{
@@ -246,8 +248,8 @@ TOKEN :
 				})
 				else if (f.equals("WEST")
 				{
-				world.turnRight();
-				world.turnRight();
+					world.turnRight();
+					world.turnRight();
 				})
 			}
 			if (a.equals("north"))
@@ -271,37 +273,131 @@ TOKEN :
 		 }
 	 }
 		
-	void veer(boolean direc): { int x= 0;}
+	void Dmove(int n , boolean direc): { int x= 0;}
+	{
+		<d>
 		{
-			<d>
-			{
 			String a = token.image;
-			comand.add(a);
-			if (direc)
-			{
+		  	comand.add(a);
+		 	if (direc)
+		  	{
 				if (a.equals("right-"))
+				{
 					world.turnRight();
-					
+					world.moveForward(n, false)
+				}
 				else if (a.equals("left-"))
 				{ 
 					world.turnRight();
 					world.turnRight();
 					world.turnRight();
+					world.moveForward(n, false)
 				}
-					
-				else if (a.equals("around-"))
+				else if (a.equals("back-"))
 				{
 					world.turnRight();
 					world.turnRight();
+					world.moveForward(n, false)
 				}
-				else
+				else if (a.equals("front-"))
 				{
-				world.turnRight();
-				world.turnRight();
-				world.turnRight();
-				world.turnRight();
+					world.turnRight();
+					world.turnRight();
+					world.turnRight();
+					world.turnRight();
+					world.moveForward(n, false)
 				}
+			}
 		}
+	}	
+	void Omove(int n , boolean direc): { int x= 0;}
+	{
+		<d>
+		{
+			String a = token.image;
+			comand.add(a);
+			f = world.getFacing()
+			if (direc)
+			{
+				if (a.equals("south"))
+				{
+					if (f.equals("NORTH")
+					{
+						world.turnRight();
+						world.turnRight();
+					})
+					else if (f.equals("WEST")
+					{
+						world.turnRight();
+						world.turnRight();
+						world.turnRight();
+					})
+					else if (f.equals("EAST")
+					{
+						world.turnRight();
+					})
+					world.moveForward(n, false)
+				}
+			}
+			if (a.equals("west"))
+			{
+				if (f.equals("NORTH")
+				{
+					world.turnRight();
+					world.turnRight();
+					world.turnRight();
+				})
+				else if (f.equals("SOUTH")
+				{
+					world.turnRight();
+				})
+				else if (f.equals("EAST")
+				{
+					world.turnRight();
+					world.turnRight();
+				})
+				world.moveForward(n, false)
+			}
+			if (a.equals("east"))
+			{
+				if (f.equals("NORTH")
+				{
+					world.turnRight();
+				})
+				else if (f.equals("SOUTH")
+				{
+					world.turnRight();
+					world.turnRight();
+					world.turnRight();
+				})
+				else if (f.equals("WEST")
+				{
+					world.turnRight();
+					world.turnRight();
+				})
+				world.moveForward(n, false)
+			}
+			if (a.equals("north"))
+			{
+				if (f.equals("EAST")
+				{
+					world.turnRight();
+					world.turnRight();
+					world.turnRight();
+				})
+				else if (f.equals("SOUTH")
+				{
+					world.turnRight();
+					world.turnRight();
+				})
+				else if (f.equals("WEST")
+				{
+					world.turnRight();
+				})
+				world.moveForward(n, false)
+			}
+		}
+	}
 
 	
 	
