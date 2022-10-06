@@ -63,7 +63,7 @@ TOKEN: /* Nombres de Comandos */
 		| 	<RIGHT: "RIGHT">
 		| 	<PUT: "Put">
 		| 	<PICK: "Pick">
-		|   < POP: "Pop" >
+		|   <POP: "Pop">
 		|   <JUMPTO: "JumpTo" >
         |   < DROP: "Drop" >
         |   < GRAB: "Grab" >
@@ -97,6 +97,7 @@ TOKEN :
 	{	
 		
 		int x,y;
+		String s;
 		salida=new String();	
 	}
 
@@ -107,15 +108,15 @@ TOKEN :
 		   < STEP >  "(" x=num() ")" {world.moveForward(x,false);salida = "Command: Moveforward ";}  
 		|  < JUMP >  "(" x=num() ")" {world.moveForward(x,true);salida = "Command:Jumpforward ";}
 		|  < JUMPTO >  "(" x=num() "," y=num()")" {world.setPostion(x,y);salida = "Command:JumpTo ";}
-		|  < VEER > "(" x= String() ")" {veer( x ); salida = "Comando:  Veer";}
-	    |  < LOOK > "(" x= String() ")" {look(x); salida = "Comando:  Look";}  
+		|  < VEER > "(" s= String() ")" {veer( s ); salida = "Comando:  Veer";}
+	    |  < LOOK > "(" s= String() ")" {look(s); salida = "Comando:  Look";}  
 	    |  < DROP > "(" x=num() ")" {world.putChips(x); salida = "Comando:  Drop";}
 	    |  < GRAB > "(" x=num() ")" {world.pickupBalloon(x); salida = "Comando:  Grab";}
 	    |  < GET > "(" x=num() ")" {world.pickupChip(x); salida = "Comando:  Get";}
 	    |  < FREE > "(" x=num() ")" {world.putBalloon(x); salida = "Comando:  Free";}
 	    |  < POP > "(" x=num() ")" {world.popBalloon(x); salida = "Comando:  Pop";}
-	    |  < DMOVE > "(" x=num()"," y=String() ")" {Dmove(x,y); salida = "Comando:  Dmove";}#--------
-	    |  < OMOVE > "(" x=num()"," y=String() ")" {Omove(x,y); salida = "Comando:  Omove";}#---------
+	    |  < DMOVE > "(" x=num()"," s=String() ")" {Dmove(x,s); salida = "Comando:  Dmove";}#--------
+	    |  < OMOVE > "(" x=num()"," s=String() ")" {Omove(x,s); salida = "Comando:  Omove";}#---------
 	    
 	    
 	       
